@@ -31,3 +31,15 @@ Untuk mempermudah visualisasi solusi, digunakan sample input berikut:
 6969
 ```
 ![GGvisual](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/gg_visual1.png)
+
+## Nadut & Cayo
+### Verdict
+AC saat 
+### Bukti
+![acD](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/gg_bukti_ax.png)
+
+### Penjelasan Soal
+
+### Penjelasan Solusi
+
+### Visualisasi Solusi
