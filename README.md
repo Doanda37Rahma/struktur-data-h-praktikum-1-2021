@@ -290,6 +290,7 @@ OUTPUT
 4
 5
 ```
+![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/bread1.png)
 
 ## Cari Tanah
 ### Verdict
