@@ -30,3 +30,4 @@ Untuk mempermudah visualisasi solusi, digunakan sample input berikut:
 1002
 6969
 ```
+![GGvisual](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/gg_visual1.png)
