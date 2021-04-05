@@ -94,9 +94,18 @@ Kemudian stack `blocks` dipindah ke `revB` agar urutan output tepat. Setiap akhi
     return 0;
 }
 ```
-
 ### Visualisasi Solusi
-
+Untuk membantu visualisasi program, akan digunakan contoh input
+```
+1
+5
+5 4 7 2 1
+```
+![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/nadut_1.png)
+Output:
+```
+Susunan blok yang disusun Nadut dan Cayo adalah : 7 2 1
+```
 
 ## Malur Rajin
 ### Verdict
@@ -105,10 +114,60 @@ AC saat revisi
 ![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/malur_bukti_ac.png)
 
 ### Penjelasan Soal
-
+Diberikan informasi tumpukan buku dengan data relevan jumlah soal tersisa dan nama buku. Program diminta menentukan jumlah buku yang malur harus pisahkan dengan diikuti nama buku dengan soal tersisa paling sedikit tiap kali input memberikan perintah -1.
 ### Penjelasan Solusi
+Program menggunakan 2 tipe data, yaitu stack dan priority queue. Stack `books` digunakan untuk menyimpan soal tersisa dan nama buku, sedangkan priority queue `pBooks` untuk mengurutkan soal tersisa tiap buku demi menentukan yang paling sedikit.
+```
+int main(int argc, char const *argv[])
+{
+    Stack books;
+    stack_init(&books);
 
+    PriorityQueue pBooks;
+    pqueue_init(&pBooks);
+...
+```
+Pertama, program mengambil input angka `num`. Ada 3 kemungkinan: jika `num` positif, maka itu adalah banyak soal tersisa dan bersama dengan nama buku ditumpuk ke `books`, sedangkan `num` dimasukkan ke `pBooks`, jika `num` nol maka tidak ada soal tersisa dan tidak dimasukkan ke stack.
+Jika `num` adalah `-1` maka program mencari buku dengan soal paling sedikit dengan mengecek apakah top of stack sama dengan top of pqueue. Setiap kali tidak cocok, program menghilangkan satu persatu tumpukan stack dengan `stack_pop()` dan menghilangkan banyak soal tersisa milik stack yang dihapus dari pqueue menggunakan `pqueue_remove()`. Program juga menghitung tiap kali  tumpukan dihilangkan dengan `moveCount`. setelah menemukan yang dicari, program akan mengeluarkan output banyak buku yang dihilangkan dan nama buku yang dicari.
+```
+	int testc,
+		num,
+		moveCount;
+	char buku[LEN];
+
+	scanf("%d", &testc);
+	
+	moveCount = 0;
+	int i = 0;
+	for (; i<testc; i++)
+	{
+		scanf("%d", &num);
+		if (num > 0) {
+			scanf("%s", buku);
+			stack_push(&books, num, buku);
+			pqueue_push(&pBooks, num);
+		} else if (num == 0) {
+			scanf("%s", buku);
+		} else if (num < 0) {
+			if (!stack_isEmpty(&books)) {
+				while (!stack_isEmpty(&books) && 
+						pqueue_top(&pBooks) != stack_top(&books)) {
+					moveCount++;
+					pqueue_remove(&pBooks, stack_top(&books));
+					stack_pop(&books);
+				}
+				if (stack_top(&books)) {
+					printf("%d %s\n", moveCount, stack_topMapel(&books));
+					stack_pop(&books);
+					pqueue_pop(&pBooks);
+				}
+				moveCount = 0;
+			}
+		}
+	}
+```
 ### Visualisasi Solusi
+![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/malur_1.png)
 
 ## Garasi Mobil Saha
 ### Verdict
@@ -129,7 +188,7 @@ AC saat revisi
 ![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/bread_bukti_ac.png)
 
 ### Penjelasan Soal
-
+Program diberikan tumpukan awal roti Ray sebanyak n (1-n dari atas) dan roti kakaknya kosong. Program diminta memindahkan satu-persatu roti dari satu tumpukan roti ke yang lainnya. Pada akhirnya, program diminta mengeluarkan output tumpukan roti Ray dan kakanya, serta output yang bervariasi tergantung tumpukan mana yang lebih banyak/tumpukan kosong/input salah. 
 ### Penjelasan Solusi
 
 ### Visualisasi Solusi
