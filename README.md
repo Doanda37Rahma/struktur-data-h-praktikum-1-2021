@@ -34,9 +34,57 @@ Untuk mempermudah visualisasi solusi, digunakan sample input berikut:
 
 ## Nadut & Cayo
 ### Verdict
-AC saat 
+AC saat praktikum
 ### Bukti
 ![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/nadut_bukti_ac.png)
+
+### Penjelasan Soal
+
+### Penjelasan Solusi
+
+### Visualisasi Solusi
+
+## Malur Rajin
+### Verdict
+AC saat revisi
+### Bukti
+![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/malur_bukti_ac.png)
+
+### Penjelasan Soal
+
+### Penjelasan Solusi
+
+### Visualisasi Solusi
+
+## Garasi Mobil Saha
+### Verdict
+AC saat revisi
+### Bukti
+![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/garasi_bukti_ac.png)
+
+### Penjelasan Soal
+
+### Penjelasan Solusi
+
+### Visualisasi Solusi
+
+## Bread Problemo
+### Verdict
+AC saat revisi
+### Bukti
+![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/bread_bukti_ac.png)
+
+### Penjelasan Soal
+
+### Penjelasan Solusi
+
+### Visualisasi Solusi
+
+## Cari Tanah
+### Verdict
+AC saat revisi
+### Bukti
+![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/ct_bukti_ac.png)
 
 ### Penjelasan Soal
 
