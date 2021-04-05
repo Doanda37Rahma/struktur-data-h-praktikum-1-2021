@@ -21,7 +21,7 @@ Setelah langkah ini selesai, stack `urut` mengandung urutan mobil yang urut dari
 ### Visualisasi Solusi
 
 Untuk mempermudah visualisasi solusi, digunakan sample input berikut:
-
+INPUT
 ```
 5
 1012
@@ -29,6 +29,10 @@ Untuk mempermudah visualisasi solusi, digunakan sample input berikut:
 1001
 1002
 6969
+```
+OUTPUT
+```
+Urutan Mobil Roy : 1002 222 1012 1001 6969
 ```
 ![GGvisual](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/gg_visual1.png)
 
@@ -70,7 +74,7 @@ int main(int argc, char const *argv[])
 		}
 
 ```
-Kemudian stack `blocks` dipindah ke `revB` agar urutan output tepat. Setiap akhir testcase program mengeluarkan output kedua stack dikosongkan.
+Kemudian stack `blocks` dipindah ke `revB` agar urutan output tepat. Setiap akhir testcase program mengeluarkan output lalu kedua stack dikosongkan.
 ```
 		while (!stack_isEmpty(&blocks)) {
 			stack_push(&revB, stack_top(&blocks));
@@ -190,8 +194,102 @@ AC saat revisi
 ### Penjelasan Soal
 Program diberikan tumpukan awal roti Ray sebanyak n (1-n dari atas) dan roti kakaknya kosong. Program diminta memindahkan satu-persatu roti dari satu tumpukan roti ke yang lainnya. Pada akhirnya, program diminta mengeluarkan output tumpukan roti Ray dan kakanya, serta output yang bervariasi tergantung tumpukan mana yang lebih banyak/tumpukan kosong/input salah. 
 ### Penjelasan Solusi
+Program menggunakan struktur data stack. Terdapat 2 stack, yaitu tumpukan roti Ray dan kakaknya. Pertama, program menginisialisasi kedua stack, lalu mengambil input `N`, banyaknya roti si awal tumpukan Ray, dan `T` banyaknya testcase. Apabila `N` kurang dari 1, maka mengeluarkan `Ray SangaT MaraH!`. Kemudian, program memasukkan angka `N` sampai `1` ke dalam stack `ray` Tiap testcase, program mengambil input `a` dan `b` dimana `a=1` berarti memindahkan roti sebanyak `b` (satu-persatu) dari stack `ray` ke stack `kakak` . Jika `a=2`, artinya memindahkan roti dari stack `kakak` ke stack `ray`. Jika `a` bukan 1 atau 2, maka program mengeluarkan `TumpukAnnya saLah! :(`.
+```
+int main(int argc, char const *argv[])
+{
+    Stack ray;
+    Stack kakak;
+ 
+    stack_init(&ray);
+    stack_init(&kakak);
+    
+    int N, T, a, b;
+    
+    scanf("%d", &N);
+    scanf("%d", &T);
+    
+    if (N<1) {
+    	printf("Ray SangaT MaraH!\n");
+    	return 0;
+	}
+	
+    int i, j;
+    for (i=N; i>0; i--) {
+    	stack_push(&ray, i);
+	}
+    for (i=0; i<T; i++)
+    {
+    	scanf("%d%d", &a, &b );
+    	if (a==1) {
+    		for (j=0; j<b && !stack_isEmpty(&ray); j++) {
+				stack_push(&kakak, stack_top(&ray));
+				stack_pop(&ray);	    		
+			}
+		} else if (a==2) {
+    		for (j=0; j<b && !stack_isEmpty(&kakak); j++) {
+				stack_push(&ray, stack_top(&kakak));
+				stack_pop(&kakak);	    					
+			}
+		} else {
+			printf("TumpukAnnya saLah! :(\n");
+			return 0;
+		}
+	}
 
+```
+Setelah itu, program mengeluarkan tumpukan teratas dari stack `ray` dan `kakak` (dipisah dengan spasi) sampai kedua stack kosong. Jika `ray` kosong terlebih dahulu, maka program mengeluarkan `-` (hanya sekali). Sebaliknya, jika `kakak` kosong terlebih dahulu, mengeluarkan `:(`.
+```
+	int rayE=0, kakakE=0; 
+	
+	while (!stack_isEmpty(&ray) || !stack_isEmpty(&kakak)) {
+		if (!stack_isEmpty(&ray)) {
+			printf("%d ", stack_top(&ray));
+			stack_pop(&ray);
+		} else {
+			rayE+=1;
+		}
+		if (rayE>0) {
+			printf("- ");
+			rayE=-10000;
+		} else if (rayE < 0) {
+			printf(" ");
+		}
+		if (!stack_isEmpty(&kakak)) {
+			printf("%d", stack_top(&kakak));
+			stack_pop(&kakak);
+		} else {
+			kakakE+=1;
+		}
+		if (kakakE>0) {
+			printf(":(");
+			kakakE=-10000;
+		}
+		putchar('\n');
+	}
+	
+    return 0;
+}
+
+```
 ### Visualisasi Solusi
+Contoh INPUT:
+```
+5
+5
+1 1
+1 2
+1 1
+2 1
+2 2
+```
+OUTPUT
+```
+2 1
+3 :(
+4
+5
+```
 
 ## Cari Tanah
 ### Verdict
