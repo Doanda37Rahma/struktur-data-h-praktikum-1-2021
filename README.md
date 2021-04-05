@@ -36,7 +36,7 @@ Untuk mempermudah visualisasi solusi, digunakan sample input berikut:
 ### Verdict
 AC saat 
 ### Bukti
-![acD](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/gg_bukti_ax.png)
+![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/nadut_bukti_ac.png)
 
 ### Penjelasan Soal
 
