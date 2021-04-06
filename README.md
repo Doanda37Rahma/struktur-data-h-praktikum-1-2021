@@ -184,8 +184,138 @@ Program diberikan garasi mobil dengan informasi banyak mobil, kapasitas, dan wak
 Program diminta menentukan apakah mobil pertama dapat keluar, tanpa dihalangi oleh mobil lain/mobil masuk tidak memenuhi garasi melebihi kapasitas.
 Garasi Saha tidak memungkinkan sebuah mobil atau lebih masuk pada waktu yang sama atau keluar pada waktu yang sama tapi memungkinkan lebih dari 1 mobil masuk dan keluar pada waktu yang sama. 
 ### Penjelasan Solusi
-Program menggunakan priority queue untuk
+Program menggunakan priority queue yang berisi `masuk` dan `keluar` sebagai waktu mobil masuk dan keluar, untuk mengurutkan waktu masuk mobil.
+Pertama, program menginisialisasi pqueue `cars`, lalu mengambil input `testc` (banyak testcase). 
+```
+int main(int argc, char const *argv[])
+{
+   PriorityQueue cars;
+   pqueue_init(&cars);
+   int testc;
+   int carCount,
+   cap,
+   timeIn,
+   timeOut,
+   renov;
+    
+   scanf("%d", &testc);
+
+```
+Untuk setiap testcase:
+1. Program mengambil input `timeIn` dan `timeOut` lalu memasukkan ke pqueue. 
+```
+    int i=0;
+    for (; i<testc; i++)
+    {
+		scanf("%d%d", &carCount ,&cap);
+    	int j=0;
+    	for (; j<carCount; j++) {
+    		scanf("%d%d", &timeIn,&timeOut);
+    		pqueue_push(&cars, timeIn, timeOut);
+		}
+
+```
+2. Kemudian, program mengurutkan waktu keluar mobil dalam pqueue untuk mobil-mobil dengan waktu masuk sama (karena 2 mobil boleh masuk dan keluar bersamaan) melalui fungsi `pqueue_sortCars()` (sebagai 'just in case').
+3. Selanjutnya, program menentukan apakah garasi butuh renovasi melalui fungsi `pqueue_needRenov()` dan mengeluarkan `Hmm harus renovasi garasi nich` jika TRUE dan `Hore gausah renov garasi` jika FALSE.
+```
+		if (pqueue_needRenov(&cars))
+			printf("Hmm harus renovasi garasi nich\n");
+		else
+			printf("Hore gausah renov garasi\n");
+
+```
+4. Program mengosongkan pqueue.
+```
+	    while (!pqueue_isEmpty(&cars)) {
+	        pqueue_pop(&cars);
+	    }
+	}
+    return 0;
+}
+```
+#### Fungsi pqueue_sortCars()
+Fungsi ini melakukan traverse melalui setiap node dalam pqueue dan setiap kali `masuk` dalam node sama dengan node selanjutnya, fungsi akan meng-swap `keluar` dari kedua node jika `keluar` dari node lebih dari node berikutnya.
+```
+void pqueue_sortCars(PriorityQueue *pqueue) {
+    if (!pqueue_isEmpty(pqueue)) {
+        PQueueNode *temp;
+        temp = pqueue->_top;
+		
+	int tempval;
+        while (temp->next != NULL) {
+		if (temp->masuk == temp->next->masuk) {
+			if (temp->keluar > temp->next->keluar) {
+				tempval = temp->keluar;
+				temp->keluar = temp->next->keluar;
+				temp->next->keluar = tempval;
+			}
+		}
+		temp = temp->next;
+        }
+    }
+}
+```
+#### Fungsi pqueue_needRenov()
+Fungsi ini sebagai fungsi bool utama untuk menentukan output program, mengembalikan 1 jika garasi perlu renovasi, 0 jika tidak. Fungsi akan menemukan salah satu dari case-case berikut:
+1. Jika waktu keluar mobil pertama lebih kecil atau sama dengan waktu masuk mobil kedua, maka keluar 0.
+2. Jika saat traverse waktu masuk dan keluar sebuah mobil sama, maka keluar 1.
+3. Jika saat traverse menemukan mobil setelah mobil pertama yang masuk sebelum mobil pertama keluar DAN keluar setelah mobil pertama (yang berarti mobil pertama tidak bisa keluar), maka keluar 1.
+4. Jika traverse selesai (berarti mobil pertama bisa keluar), maka keluar 0.
+```
+int  pqueue_needRenov(PriorityQueue *pqueue) {
+    PQueueNode *temp = pqueue->_top;
+    if (temp->masuk == temp->keluar) return 1;
+    if (temp->keluar <= temp->next->masuk) return 0;
+    while ( temp->next != NULL ) {
+		if (temp->next->masuk == temp->next->keluar) return 1;
+
+		temp = temp->next;
+        if ((temp->masuk >= pqueue->_top->masuk && 
+			 temp->masuk < pqueue->_top->keluar) &&
+			 temp->keluar > pqueue->_top->keluar)
+			return 1;
+	}
+	return 0;
+}
+```
 ### Visualisasi Solusi
+INPUT 1:
+```
+1
+2 1
+1 5
+3 8
+```
+![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/garasi1.png)
+OUTPUT 1:
+```
+Hmm harus renovasi garasi nich
+```
+Disini mobil pertama tidak bisa keluar karena saat mobil pertama ingin keluar, mobil kedua masih belum keluar, maka harus renovasi garasi (lihat case 3 `Fungsi pqueue_sortCars()` di atas).
+
+INPUT 2:
+```
+2
+6 6
+1 11
+2 10
+3 9
+4 8
+5 7
+6 6
+3 2
+1 2
+4 5
+3 6
+```
+![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/garasi2.png)
+OUTPUT 2:
+```
+Hmm harus renovasi garasi nich
+Hore gausah renov garasi
+```
+Dalam case 1, mobil 6 masuk dan keluar bersamaan, yang tidak diperbolehkan. maka harus renovasi. (case 2)
+Dalam case 2, mobil 1 masuk dan bisa keluar terlebih dahulu, maka tidak harus renovasi (case 1).
 
 ## Bread Problemo
 ### Verdict
