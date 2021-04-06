@@ -106,6 +106,7 @@ Untuk membantu visualisasi program, akan digunakan contoh input
 5 4 7 2 1
 ```
 ![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/nadut_1.png)
+![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/nadut_2.png)
 Output:
 ```
 Susunan blok yang disusun Nadut dan Cayo adalah : 7 2 1
