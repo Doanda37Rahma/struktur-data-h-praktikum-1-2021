@@ -180,9 +180,11 @@ AC saat revisi
 ![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/garasi_bukti_ac.png)
 
 ### Penjelasan Soal
-
+Program diberikan garasi mobil dengan informasi banyak mobil, kapasitas, dan waktu masuk/keluar mobil.
+Program diminta menentukan apakah mobil pertama dapat keluar, tanpa dihalangi oleh mobil lain/mobil masuk tidak memenuhi garasi melebihi kapasitas.
+Garasi Saha tidak memungkinkan sebuah mobil atau lebih masuk pada waktu yang sama atau keluar pada waktu yang sama tapi memungkinkan lebih dari 1 mobil masuk dan keluar pada waktu yang sama. 
 ### Penjelasan Solusi
-
+Program menggunakan priority queue untuk
 ### Visualisasi Solusi
 
 ## Bread Problemo
