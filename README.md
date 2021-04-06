@@ -291,7 +291,7 @@ OUTPUT 1:
 ```
 Hmm harus renovasi garasi nich
 ```
-Disini mobil pertama tidak bisa keluar karena saat mobil pertama ingin keluar, mobil kedua masih belum keluar, maka harus renovasi garasi (lihat case 3 `Fungsi pqueue_sortCars()` di atas).
+Disini mobil pertama tidak bisa keluar karena saat mobil pertama ingin keluar, mobil kedua masih belum keluar, maka harus renovasi garasi (lihat kemungkinan 3 `Fungsi pqueue_sortCars()` di atas).
 
 INPUT 2:
 ```
@@ -314,8 +314,8 @@ OUTPUT 2:
 Hmm harus renovasi garasi nich
 Hore gausah renov garasi
 ```
-Dalam case 1, mobil 6 masuk dan keluar bersamaan, yang tidak diperbolehkan. maka harus renovasi. (case 2)
-Dalam case 2, mobil 1 masuk dan bisa keluar terlebih dahulu, maka tidak harus renovasi (case 1).
+Dalam case 1, mobil 6 masuk dan keluar bersamaan, yang tidak diperbolehkan. maka harus renovasi. (kemungkinan 2)
+Dalam case 2, mobil 1 masuk dan bisa keluar terlebih dahulu, maka tidak harus renovasi (kemungkinan 1).
 
 ## Bread Problemo
 ### Verdict
