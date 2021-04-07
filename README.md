@@ -288,6 +288,7 @@ INPUT 1:
 3 8
 ```
 ![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/garasi1.png)
+
 OUTPUT 1:
 ```
 Hmm harus renovasi garasi nich
@@ -310,6 +311,7 @@ INPUT 2:
 3 6
 ```
 ![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/garasi2.png)
+
 OUTPUT 2:
 ```
 Hmm harus renovasi garasi nich
@@ -432,7 +434,45 @@ AC saat revisi
 ![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/ct_bukti_ac.png)
 
 ### Penjelasan Soal
-
+Program diberika suatu 2d array dengan value 1 atau 0.
+Program diminta menentukan apakah terdapat luas yang terbentuk dari 0 minimal sebesar `x`.
 ### Penjelasan Solusi
-
+Program menggunakan konsep histogram untuk mencari luas. Untuk setiap baris dari 2d array, ada baris histogram yang berisi tinggi (banyaknya 0 untuk tiap kolom, dihitung sejak baris pertama atau baris setelah baris bervalue 1 jika menemukan) tiap kolom. Implementasinya seperti berikut:
+Misal input 2d array berukuran 5x5 dan misal minimal area adalah `5`:
+```
+11100
+00100
+00001
+00011
+11100
+```
+Maka yang pertama dilakukan adalah mengubah setiap 0 menjadi 1 dan sebaliknya (karena lebih baik melakukan increment untuk tiap value 1 untuk mencari nilai data pada histogram).
+```
+00011
+11011
+11110
+11100
+00011
+```
+Kemudian hasil histogram:
+```
+00011
+11022
+22130
+33200
+00011
+```
+Setelah mendapat kelima baris histogram, program menggunakan fungsi `maxHist()` untuk menghitung luas maksimum yang ditemukan pada tiap baris histogram. Setelah itu, maka akan ditemukan:
+```
+Area max baris 1: 2
+Area max baris 2: 4
+Area max baris 3: 4
+Area max baris 4: 6
+Area max baris 5: 2
+```
+Maka ditemukan pada histogram ke-4, max areanya (6) melebihi minimal area (5) sehingga `maxHist()` mengembalikan TRUE dan program mengeluarkan output `IYA`. Jika terjadi sebaliknya, maka program mengeluarkan output `TIDAK` 
 ### Visualisasi Solusi
+Dilihat pada histogram ke-4: 
+![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/caritanah1.png)
+
+Ditemukan luas maksimal 6
