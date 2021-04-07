@@ -438,7 +438,7 @@ AC saat revisi
 ![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/ct_bukti_ac.png)
 
 ### Penjelasan Soal
-Program diberika suatu 2d array dengan value 1 atau 0.
+Program diberikan suatu 2d array dengan value 1 atau 0.
 Program diminta menentukan apakah terdapat luas yang terbentuk dari 0 minimal sebesar `x`.
 ### Penjelasan Solusi
 Program menggunakan konsep histogram untuk mencari luas. Untuk setiap baris dari 2d array, ada baris histogram yang berisi tinggi (banyaknya 0 untuk tiap kolom, dihitung sejak baris pertama atau baris setelah baris bervalue 1 jika menemukan) tiap kolom. Implementasinya seperti berikut:
