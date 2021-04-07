@@ -21,6 +21,7 @@ Setelah langkah ini selesai, stack `urut` mengandung urutan mobil yang urut dari
 ### Visualisasi Solusi
 
 Untuk mempermudah visualisasi solusi, digunakan sample input berikut:
+
 INPUT
 ```
 5
@@ -107,6 +108,7 @@ Untuk membantu visualisasi program, akan digunakan contoh input
 ```
 ![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/nadut_1.png)
 ![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/nadut_2.png)
+
 Output:
 ```
 Susunan blok yang disusun Nadut dan Cayo adalah : 7 2 1
@@ -409,6 +411,7 @@ Setelah itu, program mengeluarkan tumpukan teratas dari stack `ray` dan `kakak` 
 ```
 ### Visualisasi Solusi
 Contoh INPUT:
+
 ```
 5
 5
@@ -419,6 +422,7 @@ Contoh INPUT:
 2 2
 ```
 OUTPUT
+
 ```
 2 1
 3 :(
@@ -438,15 +442,42 @@ Program diberika suatu 2d array dengan value 1 atau 0.
 Program diminta menentukan apakah terdapat luas yang terbentuk dari 0 minimal sebesar `x`.
 ### Penjelasan Solusi
 Program menggunakan konsep histogram untuk mencari luas. Untuk setiap baris dari 2d array, ada baris histogram yang berisi tinggi (banyaknya 0 untuk tiap kolom, dihitung sejak baris pertama atau baris setelah baris bervalue 1 jika menemukan) tiap kolom. Implementasinya seperti berikut:
-Misal input 2d array berukuran 5x5 dan misal minimal area adalah `5`:
+Misal input 2d array berukuran 5x5 dan misal minimal area adalah `5`. Pertama, program mengambil tiap input sebagai char dan mengubahnya menjadi int:
 ```
+		scanf("%d%d\n", &p, &l);
+		for (j=0; j<p; j++) {
+			
+			for (k=0; k<l; k++){
+				c = getchar();
+				if (k==l-1 && j!= p-1) scanf("\n");
+				arr[j][k] = (int)c - '0';
+			}
+		}
+
+```
+
+INPUT:
+
+```
+1 5
+5 5
 11100
 00100
 00001
 00011
 11100
 ```
-Maka yang pertama dilakukan adalah mengubah setiap 0 menjadi 1 dan sebaliknya (karena lebih baik melakukan increment untuk tiap value 1 untuk mencari nilai data pada histogram).
+Kemudian mengubah setiap 0 menjadi 1 dan sebaliknya (karena lebih baik melakukan increment untuk tiap value 1 untuk mencari nilai data pada histogram).
+
+```
+		for (j=0; j<p; j++) {
+			for (k=0; k<l; k++) {
+				if (arr[j][k]) arr[j][k] = 0;
+				else arr[j][k] = 1; 
+			}
+		}
+
+```
 ```
 00011
 11011
@@ -456,13 +487,33 @@ Maka yang pertama dilakukan adalah mengubah setiap 0 menjadi 1 dan sebaliknya (k
 ```
 Kemudian hasil histogram:
 ```
+		for (j=0; j<p; j++) {
+			if (j) {
+				for (k=0; k<l; k++) {
+					if (arr[j][k]) arr[j][k] += arr[j-1][k];
+				}
+			}
+		}
+
+```
+```
 00011
 11022
 22130
 33200
 00011
 ```
-Setelah mendapat kelima baris histogram, program menggunakan fungsi `maxHist()` untuk menghitung luas maksimum yang ditemukan pada tiap baris histogram. Setelah itu, maka akan ditemukan:
+Setelah mendapat kelima baris histogram, program menggunakan fungsi `maxHist()` (https://www.geeksforgeeks.org/maximum-size-rectangle-binary-sub-matrix-1s/) untuk menghitung luas maksimum yang ditemukan pada tiap baris histogram. Setelah itu, maka akan ditemukan:
+```
+		int ada = 0;
+		for (j=0; j<p; j++) {
+			if (maxHist(arr[j], l) > min) ada =1; 
+		}
+	
+		if (ada) printf("IYA\n");
+		else printf("TIDAK\n");	
+
+```
 ```
 Area max baris 1: 2
 Area max baris 2: 4
@@ -473,6 +524,7 @@ Area max baris 5: 2
 Maka ditemukan pada histogram ke-4, max areanya (6) melebihi minimal area (5) sehingga `maxHist()` mengembalikan TRUE dan program mengeluarkan output `IYA`. Jika terjadi sebaliknya, maka program mengeluarkan output `TIDAK` 
 ### Visualisasi Solusi
 Dilihat pada histogram ke-4: 
+
 ![nc](https://github.com/Doanda37Rahma/struktur-data-h-praktikum-1-2021/blob/main/img/caritanah1.png)
 
 Ditemukan luas maksimal 6
